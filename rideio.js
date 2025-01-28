@@ -8,11 +8,6 @@ const WTS = {
 const GRP_SEP = " ";
 const SUB_GRP_SEP = "-";
 
-function processTextStub(inputText) {
-    // Example logic: Convert text to uppercase
-    return inputText.toUpperCase();
-}
-
 function processSubGrp(subGrp) {
     const ents = subGrp.split(SUB_GRP_SEP);
     const firstEnt = ents[0];
@@ -53,7 +48,7 @@ function processGrp(grp) {
     return [firstEnt, [...ents], edges];
 }
 
-function processText(grps) {
+function processGrps(grps) {
     grps = grps.trim().split("\n").filter(g => g.length > 0);
     const ed = {};
 
@@ -113,7 +108,11 @@ function processText(grps) {
         txt += `${n} ${s} ${Math.abs(wt)}\n`;
     });
     
-    document.getElementById("output").value = `ooffn`;
-    
     return txt;
+}
+
+function processText() {
+    const grps = document.getElementById("input").value;
+    const txt = processGrps(grps);
+    document.getElementById("output").value = `byeBye`;
 }
