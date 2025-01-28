@@ -5,53 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Processor</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            margin-top: 50px;
-            padding: 20px;
-            background: #fff;
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        input, button {
-            margin: 10px 0;
-            padding: 10px;
-            width: 80%;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        p {
-            margin-top: 20px;
-        }
+        /* Add your CSS styles here */
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Text Processor</h1>
         <input type="text" id="textInput" placeholder="Enter your text here">
-        <button onclick="processText()">Submit</button>
+        <button onclick="handleSubmit()">Submit</button>
         <p id="output"></p>
     </div>
 
+    <!-- Link to the external JavaScript file -->
+    <script src="rideio.js"></script>
+
     <script>
-        function processText() {
+        // This function calls the processText function from the external JS file
+        function handleSubmit() {
             const input = document.getElementById("textInput").value;
-            const output = input.toUpperCase(); // Example: Convert text to uppercase
-            document.getElementById("output").textContent = `Processed Text: ${output}`;
+            const processedText = processText(input);  // Call the function from script.js
+            document.getElementById("output").textContent = `Processed Text: ${processedText}`;
         }
     </script>
 </body>
