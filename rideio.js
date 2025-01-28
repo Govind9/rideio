@@ -84,7 +84,7 @@ function processGrps(grps) {
         const wt = ed[key];
         if (wt !== 0) {
             console.log(`${n1} <-- ${n2} ${wt}\n`);
-            txt += `${n1} <-- ${n2} ${wt}`;
+            txt += `${n1} <-- ${n2} ${wt}\n`;
         }
     });
 
