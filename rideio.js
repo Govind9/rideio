@@ -112,7 +112,7 @@ function processGrps(grps) {
 }
 
 function processText() {
-    const grps = document.getElementById("input").value;
+    const grps = document.getElementById("inputText").value;
     const txt = processGrps(grps);
-    document.getElementById("output").value = `byeBye`;
+    document.getElementById("output").value = txt;
 }
