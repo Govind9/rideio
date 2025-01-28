@@ -82,12 +82,14 @@ function processText(grps) {
     }
 
     // TODO: remove 0 wt edges
+    let txt = "";
     const edKeys = Object.keys(ed).sort((a, b) => ed[a] - ed[b]);
     edKeys.forEach(key => {
         const [n1, n2] = key.split(",");
         const wt = ed[key];
         if (wt !== 0) {
-            console.log(`${n1} <-- ${n2} ${wt}`);
+            console.log(`${n1} <-- ${n2} ${wt}\n`);
+            txt += `${n1} <-- ${n2} ${wt}`;
         }
     });
 
@@ -103,9 +105,13 @@ function processText(grps) {
 
     const fdKeys = Object.keys(fd).sort((a, b) => fd[a] - fd[b]);
     console.log("#".repeat(50));
+    txt += `#######\n`;
     fdKeys.forEach(n => {
         const wt = fd[n];
         const s = wt > 0 ? "gets" : "pays";
         console.log(`${n} ${s} ${Math.abs(wt)}`);
+        txt += `${n} ${s} ${Math.abs(wt)}\n`;
     });
+    
+    return txt;
 }
