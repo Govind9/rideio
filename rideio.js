@@ -113,7 +113,7 @@ function processText(grps) {
         txt += `${n} ${s} ${Math.abs(wt)}\n`;
     });
     
-    document.getElementById("output").value = generatedText;
+    document.getElementById("output").value = txt;
     
     return txt;
 }
