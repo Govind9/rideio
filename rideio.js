@@ -8,7 +8,7 @@ const WTS = {
 const GRP_SEP = " ";
 const SUB_GRP_SEP = "-";
 
-function processText(inputText) {
+function processTextStub(inputText) {
     // Example logic: Convert text to uppercase
     return inputText.toUpperCase();
 }
@@ -53,7 +53,7 @@ function processGrp(grp) {
     return [firstEnt, [...ents], edges];
 }
 
-function processGrps(grps) {
+function processText(grps) {
     grps = grps.trim().split("\n").filter(g => g.length > 0);
     const ed = {};
 
