@@ -3,29 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Processor</title>
+    <title>Rideio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> <!-- Google Fonts -->
     <style>
-        /* Add your CSS styles here */
+        /* General reset */
+        body, h1, p, textarea, button {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply a clean, modern font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px; /* Keep the content from stretching too wide */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .container button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Text Processor</h1>
-        <input type="text" id="textInput" placeholder="Enter your text here">
-        <button onclick="handleSubmit()">Submit</button>
+        <h1>Rideio</h1>
+        <textarea id="textInput" placeholder="Enter your text here"></textarea>
+        <button onclick="processText()">Submit</button>
         <p id="output"></p>
     </div>
 
-    <!-- Link to the external JavaScript file -->
+    <!-- Link to external JS file -->
     <script src="rideio.js"></script>
-
-    <script>
-        // This function calls the processText function from the external JS file
-        function handleSubmit() {
-            const input = document.getElementById("textInput").value;
-            const processedText = processText(input);  // Call the function from script.js
-            document.getElementById("output").textContent = `Processed Text: ${processedText}`;
-        }
-    </script>
 </body>
 </html>
