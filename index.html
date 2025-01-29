@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>rideI0</h1>
+        <h1>ride.io</h1>
         <textarea id="textInput" placeholder="Enter your text here"></textarea>
         <button onclick="processText()">Submit</button>
         <textarea id="output" readonly></textarea>
@@ -202,7 +202,7 @@
         }
 
         function processText() {
-            const grps = document.getElementById("textInput").value;
+            const grps = document.getElementById("textInput").value.toUpperCase();
             const txt = processGrps(grps);
             document.getElementById("output").value = txt;
         }
