@@ -18,7 +18,7 @@
         /* Apply a clean, modern font */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #6A6666;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,24 +27,32 @@
         }
 
         .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 100%;
             width: 100%;
-            max-width: 600px; /* Keep the content from stretching too wide */
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-family: 'Papyrus';
+            font-size: 36px;
+            font-weight: bold;
             color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase; /* Adds a little formality */
         }
 
         textarea {
             width: 100%;
             height: 150px;
             padding: 15px;
+            background-color:#31302F;
+            color: #f4f4f4;
+            font-family: 'Papyrus';
             font-size: 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -72,7 +80,7 @@
         #output {
             margin-top: 20px;
             font-size: 1.2rem;
-            color: #333;
+            color: #f4f4f4;
         }
 
         .container button {
