@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rideio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
         /* General reset */
         body, h1, p, textarea, button {
@@ -75,13 +78,42 @@
         .container button {
             margin-top: 10px;
         }
+
+        /* Flexbox container for the buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%; /* Ensures spacing is even */
+            max-width: 300px; /* Adjust width as needed */
+            margin: 10px 0; /* Adds some spacing */
+        }
+
+        /* Icon styles */
+        .button-container span {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .button-container span:hover {
+            transform: scale(1.2);
+            color: #007bff; /* Blue effect */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>ride.io</h1>
-        <textarea id="textInput" placeholder="Enter your text here"></textarea>
-        <button onclick="processText()">Submit</button>
+        <textarea id="input" placeholder="Enter Weekly Ride Share Details"></textarea>
+        <!-- <button onclick="processText()">Submit</button> -->
+        <div class="button-container">
+            <p><span class="glyphicon glyphicon-road" onclick="processText()"></span> calc</p>
+            <p><span class="glyphicon glyphicon-duplicate" onclick="copyText()"></span> copy</p>
+            <p><span class="glyphicon glyphicon-refresh" onclick="clearTextareas()"></span> clear</p>
+        </div>
         <textarea id="output" readonly></textarea>
     </div>
 
@@ -202,9 +234,27 @@
         }
 
         function processText() {
-            const grps = document.getElementById("textInput").value.toUpperCase();
-            const txt = processGrps(grps);
-            document.getElementById("output").value = txt;
+            let grps = document.getElementById("input").value.toUpperCase();
+            grps = grps.trim();
+            if (grps !== '') {
+                const txt = processGrps(grps);
+                document.getElementById("output").value = txt;
+                document.getElementById("input").value = grps;
+            }
+        }
+
+        function copyText() {
+            var textarea = document.getElementById("output");
+            textarea.select();
+            navigator.clipboard.writeText(textarea.value)
+                .catch(err => console.error("Error copying text: ", err));
+        }
+
+        function clearTextareas() {
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                textarea.value = '';
+            });
         }
     </script>
 </body>
