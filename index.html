@@ -190,6 +190,9 @@
             grps.forEach(grp => {
                 const [dr, ents, edges] = processGrp(grp);
                 edges.forEach(([n1, n2, wt]) => {
+                    // remove any * from edges
+                    n1 = n1.replace("*", "")
+                    n2 = n2.replace("*", "")
                     if (ed.hasOwnProperty(`${n1},${n2}`)) {
                         ed[`${n1},${n2}`] += wt;
                     } else if (ed.hasOwnProperty(`${n2},${n1}`)) {
