@@ -173,7 +173,7 @@
             ents.forEach(ent => {
                 if (ent !== firstEnt) {
                     var dr = "dr"
-                    if (ent.endswith("*")) {
+                    if (ent.endsWith("*")) {
                         dr = "dr*"
                     }
                     edges.push([firstEnt, ent, WTS[dr]]);
