@@ -131,8 +131,9 @@
         // rideio.js
 
         const WTS = {
-            "pi": 5,
-            "dr": 15
+            "pi": 5, 
+            "dr": 15,
+            "dr*": 10,
         };
 
         const GRP_SEP = " ";
@@ -171,7 +172,11 @@
             // add grp edges
             ents.forEach(ent => {
                 if (ent !== firstEnt) {
-                    edges.push([firstEnt, ent, WTS["dr"]]);
+                    var dr = "dr"
+                    if (ent.endswith("*")) {
+                        dr = "dr*"
+                    }
+                    edges.push([firstEnt, ent, WTS[dr]]);
                 }
             });
 
