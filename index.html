@@ -115,6 +115,8 @@
 <body>
     <div class="container">
         <h1>ride.io</h1>
+        <h1 id="app_version" onload="app_version()"></h1>
+        <p id="app_version12"></p>
         <textarea id="input" placeholder="Enter Weekly Ride Share Details"></textarea>
         <!-- <button onclick="processText()">Submit</button> -->
         <div class="button-container">
@@ -138,6 +140,44 @@
 
         const GRP_SEP = " ";
         const SUB_GRP_SEP = "-";
+
+        function app_version() {
+            var version_string = Date();
+            document.getElementById("app_version").innerHTML = version_string;
+            console.log("hehe")
+            console.log(version_string)
+            window.onload = app_version;
+        }
+
+        function get_last_number(str) {
+            if (typeof str !== 'string' || str.length === 0) {
+                return false; // Or null, as you prefer
+            }
+
+            let numberStr = "";
+            for (let i = str.length - 1; i >= 0; i--) {
+                const char = str.charAt(i);
+                if (!isNaN(parseInt(char, 10))) {
+                numberStr = char + numberStr; // Prepend the digit
+                } else {
+                break; // Stop when a non-digit is encountered
+                }
+            }
+
+            if (numberStr.length > 0) {
+                return parseInt(numberStr, 10);
+            } else {
+                return false; // Or null
+            }
+        }
+
+        function clean_name(str) {
+            str = str.replace("*", "");
+            if (get_last_number(str)) {
+                str = str.replace(get_last_number(str), "");
+            }
+            return str;
+        }
 
         function processSubGrp(subGrp) {
             const ents = subGrp.split(SUB_GRP_SEP);
@@ -172,11 +212,22 @@
             // add grp edges
             ents.forEach(ent => {
                 if (ent !== firstEnt) {
-                    var dr = "dr"
-                    if (ent.endsWith("*")) {
-                        dr = "dr*"
+                    // decide what kind of weight value ton use
+                    // dr: for simple back-forth driving
+                    // dr*: for one driving
+                    // drN: for driving at special rate N
+                    if (get_last_number(ent)) {
+                        edges.push([firstEnt, ent, get_last_number(ent)]);
+                        console.log(firstEnt, "drove", ent, "at rate", get_last_number(ent));
                     }
-                    edges.push([firstEnt, ent, WTS[dr]]);
+                    else if (ent.endsWith("*")) {
+                        edges.push([firstEnt, ent, WTS["dr*"]]);
+                        console.log(firstEnt, "drove", ent, "at rate", WTS["dr*"]);
+                    }
+                    else {
+                        edges.push([firstEnt, ent, WTS["dr"]]);
+                        console.log(firstEnt, "drove", ent, "at rate", WTS["dr"]);
+                    }
                 }
             });
 
@@ -191,8 +242,8 @@
                 const [dr, ents, edges] = processGrp(grp);
                 edges.forEach(([n1, n2, wt]) => {
                     // remove any * from edges
-                    n1 = n1.replace("*", "")
-                    n2 = n2.replace("*", "")
+                    n1 = clean_name(n1);
+                    n2 = clean_name(n2);
                     if (ed.hasOwnProperty(`${n1},${n2}`)) {
                         ed[`${n1},${n2}`] += wt;
                     } else if (ed.hasOwnProperty(`${n2},${n1}`)) {
